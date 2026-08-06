@@ -1,0 +1,119 @@
+/* ==========================================
+   Conecta News 1.0 - script.js principal
+   Controle de navegação e integração com data.json
+   ========================================== */
+
+// Função para alternar telas
+function mostrarTela(idTela) {
+  const telas = document.querySelectorAll(".tela");
+  telas.forEach(tela => tela.classList.remove("ativa"));
+
+  const telaSelecionada = document.getElementById(idTela);
+  if (telaSelecionada) {
+    telaSelecionada.classList.add("ativa");
+  }
+}
+
+// Navegação principal
+function configurarNavegacao() {
+  document.getElementById("btnInicio").addEventListener("click", () => mostrarTela("telaInicio"));
+  document.getElementById("btnNotas").addEventListener("click", () => mostrarTela("telaNotas"));
+  document.getElementById("btnAgenda").addEventListener("click", () => mostrarTela("telaAgenda"));
+  document.getElementById("btnCalendario").addEventListener("click", () => mostrarTela("telaCalendario"));
+  document.getElementById("btnConfig").addEventListener("click", () => mostrarTela("telaConfig"));
+
+  // Atalhos da tela inicial
+  document.getElementById("btnBlocoNotas").addEventListener("click", () => mostrarTela("telaNotas"));
+  document.getElementById("btnAgendaDiaria").addEventListener("click", () => mostrarTela("telaAgenda"));
+}
+
+// Carrega configurações do data.json
+async function carregarConfiguracoes() {
+  try {
+    const response = await fetch("json/data.json");
+    const dados = await response.json();
+
+    aplicarPreferencias(dados.usuario.preferencias);
+    aplicarGrupos(dados.grupos);
+
+    console.log("Configurações carregadas:", dados);
+  } catch (error) {
+    console.error("Erro ao carregar data.json:", error);
+  }
+}
+
+// Aplica preferências do usuário
+function aplicarPreferencias(preferencias) {
+  if (preferencias.tema === "claro") {
+    document.body.classList.remove("tema-escuro");
+  } else {
+    document.body.classList.add("tema-escuro");
+  }
+
+  if (preferencias.notificacoes) {
+    console.log("Notificações ativadas");
+  } else {
+    console.log("Notificações desativadas");
+  }
+}
+
+
+// Alternância manual de tema
+function configurarToggleTema() {
+  const btnToggleTema = document.getElementById("btnToggleTema");
+  btnToggleTema.addEventListener("click", () => {
+    document.body.classList.toggle("tema-escuro");
+
+    // Atualiza preferências no localStorage
+    const temaAtual = document.body.classList.contains("tema-escuro") ? "escuro" : "claro";
+    const dados = JSON.parse(localStorage.getItem("conectaNewsData")) || {};
+    dados.usuario = dados.usuario || {};
+    dados.usuario.preferencias = dados.usuario.preferencias || {};
+    dados.usuario.preferencias.tema = temaAtual;
+    localStorage.setItem("conectaNewsData", JSON.stringify(dados));
+
+    console.log("Tema alterado para:", temaAtual);
+  });
+}
+
+// Ajuste na inicialização
+window.addEventListener("DOMContentLoaded", () => {
+  mostrarTela("telaInicio");
+  configurarNavegacao();
+  carregarConfiguracoes();
+  configurarToggleTema();
+
+  console.log("Conecta News 1.0 iniciado com sucesso!");
+});
+
+
+
+// Aplica grupos dinamicamente
+function aplicarGrupos(grupos) {
+  const gruposDiv = document.querySelector(".grupos");
+  gruposDiv.innerHTML = "";
+
+  grupos.forEach(grupo => {
+    const div = document.createElement("div");
+    div.classList.add("grupo");
+    div.style.backgroundColor = grupo.cor;
+    div.textContent = grupo.nome;
+    gruposDiv.appendChild(div);
+  });
+}
+
+// Inicialização
+window.addEventListener("DOMContentLoaded", () => {
+  mostrarTela("telaInicio");
+  configurarNavegacao();
+  carregarConfiguracoes();
+
+  console.log("Conecta News 1.0 iniciado com sucesso!");
+});
+
+// Registro do Service Worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("js/sw/sw.js")
+    .then(() => console.log("Service Worker registrado!"))
+    .catch(err => console.error("Erro ao registrar Service Worker:", err));
+}

@@ -1,0 +1,28 @@
+{
+  "usuario": {
+    "nome": "Usuário",
+    "preferencias": {
+      "tema": "claro",
+      "notificacoes": true,
+      "idioma": "pt-BR"
+    }
+  },
+  "grupos": [
+    {
+      "nome": "Família",
+      "cor": "#4CAF50"
+    },
+    {
+      "nome": "Trabalho",
+      "cor": "#2196F3"
+    },
+    {
+      "nome": "Lazer",
+      "cor": "#9C27B0"
+    },
+    {
+      "nome": "Outros",
+      "cor": "#FFC107"
+    }
+  ]
+}

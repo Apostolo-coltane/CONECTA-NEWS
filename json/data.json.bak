@@ -1,0 +1,16 @@
+async function carregarConfiguracoes() {
+  try {
+    const response = await fetch("json/data.json");
+    const dados = await response.json();
+
+    // Salva no localStorage para persistência
+    localStorage.setItem("conectaNewsData", JSON.stringify(dados));
+
+    aplicarPreferencias(dados.usuario.preferencias);
+    aplicarGrupos(dados.grupos);
+
+    console.log("Configurações carregadas:", dados);
+  } catch (error) {
+    console.error("Erro ao carregar data.json:", error);
+  }
+}

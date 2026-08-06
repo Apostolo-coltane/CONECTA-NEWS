@@ -1,0 +1,321 @@
+/* ===========================
+   Conecta News 1.0 - Style.css
+   Tema claro e escuro
+   =========================== */
+
+/* Paleta de cores */
+:root {
+  --azul-conecta: #0078D7;
+  --cinza-neutro: #F3F3F3;
+  --laranja-energia: #FF8C00;
+  --grafite-suave: #333333;
+
+  --verde-familia: #4CAF50;
+  --azul-trabalho: #2196F3;
+  --roxo-lazer: #9C27B0;
+  --amarelo-outros: #FFC107;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Roboto", sans-serif;
+  background-color: var(--cinza-neutro);
+  color: var(--grafite-suave);
+  line-height: 1.6;
+}
+
+/* Tema escuro */
+body.tema-escuro {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.tema-escuro .app-header,
+body.tema-escuro .app-footer {
+  background-color: #111111;
+  color: #e0e0e0;
+}
+
+body.tema-escuro .main-nav button {
+  color: #e0e0e0;
+}
+
+body.tema-escuro .main-nav button:hover {
+  color: var(--laranja-energia);
+}
+
+body.tema-escuro #listaNotas,
+body.tema-escuro #listaCompromissos,
+body.tema-escuro #calendarioMensal {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+body.tema-escuro .btn-atalho {
+  box-shadow: 0 4px 8px rgba(255,255,255,0.2);
+}
+
+body.tema-escuro .grupo {
+  opacity: 0.9;
+}
+
+/* Cabeçalho */
+.app-header {
+  background-color: var(--azul-conecta);
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo-area img.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.main-nav button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.main-nav button:hover {
+  color: var(--laranja-energia);
+}
+
+/* Conteúdo principal */
+#appContainer {
+  padding: 2rem;
+}
+
+.tela {
+  display: none;
+}
+
+.tela.ativa {
+  display: block;
+}
+
+/* Tela inicial */
+.atalhos {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-atalho {
+  flex: 1;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-atalho.verde {
+  background-color: var(--verde-familia);
+}
+
+.btn-atalho.laranja {
+  background-color: var(--laranja-energia);
+}
+
+.btn-atalho:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Grupos */
+.grupos {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.grupo {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0.5rem;
+}
+
+.grupo.familia { background-color: var(--verde-familia); }
+.grupo.trabalho { background-color: var(--azul-trabalho); }
+.grupo.lazer { background-color: var(--roxo-lazer); }
+.grupo.outros { background-color: var(--amarelo-outros); color: black; }
+
+/* Seções internas */
+section h2 {
+  margin-bottom: 1rem;
+  color: var(--azul-conecta);
+}
+
+#listaNotas, #listaCompromissos, #calendarioMensal {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  min-height: 150px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+button#novaNota,
+button#novoCompromisso {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background-color: var(--azul-conecta);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#novaNota:hover,
+button#novoCompromisso:hover {
+  background-color: var(--laranja-energia);
+}
+
+/* Rodapé */
+.app-footer {
+  background-color: var(--azul-conecta);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* Transições suaves */
+.tela {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cartões e controles internos */
+.nota-card,
+.compromisso-card,
+.config-opcao {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  padding: 0.9rem;
+}
+
+body.tema-escuro .nota-card,
+body.tema-escuro .compromisso-card,
+body.tema-escuro .config-opcao {
+  background: #242424;
+  border-color: rgba(255,255,255,0.12);
+}
+
+.nota-acoes,
+.compromisso-acoes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.config-opcao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.config-opcao select,
+.config-opcao input {
+  max-width: 220px;
+}
+
+#salvarConfig,
+.detalhes-dia + button,
+.compromisso-acoes button,
+.nota-acoes button {
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--azul-conecta);
+  color: white;
+  cursor: pointer;
+}
+
+.grid-calendario {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(36px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dia-calendario {
+  min-height: 44px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  background: #f8f9fb;
+  color: var(--grafite-suave);
+  cursor: default;
+}
+
+.dia-com-compromisso {
+  background: var(--laranja-energia);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+body.tema-escuro .dia-calendario {
+  background: #333333;
+  border-color: rgba(255,255,255,0.15);
+  color: #e0e0e0;
+}
+
+@media (max-width: 700px) {
+  .app-header,
+  .atalhos,
+  .grupos {
+    flex-direction: column;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .grupo {
+    width: 100%;
+    margin: 0.35rem 0;
+  }
+
+  #appContainer {
+    padding: 1rem;
+  }
+}

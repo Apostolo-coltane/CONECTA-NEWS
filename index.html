@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0078D7">
+  <title>Conecta News 1.0</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="css/style/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-area">
+      <img src="assets/icons/icon-192.png" alt="Conecta News" class="logo">
+      <h1>Conecta News 1.0</h1>
+    </div>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <button type="button" id="btnInicio">Início</button>
+      <button type="button" id="btnAgenda">Agenda</button>
+      <button type="button" id="btnNotas">Notas</button>
+      <button type="button" id="btnCalendario">Calendário</button>
+      <button type="button" id="btnConfig">Config</button>
+      <button type="button" id="btnToggleTema">Tema</button>
+    </nav>
+  </header>
+
+  <main id="appContainer">
+    <section id="telaInicio" class="tela ativa">
+      <div class="atalhos">
+        <button type="button" class="btn-atalho verde" id="btnBlocoNotas">Bloco de Anotações</button>
+        <button type="button" class="btn-atalho laranja" id="btnAgendaDiaria">Agenda Diária</button>
+      </div>
+      <div class="grupos" aria-label="Grupos"></div>
+    </section>
+
+    <section id="telaNotas" class="tela">
+      <h2>Bloco de Anotações</h2>
+      <div id="listaNotas"></div>
+      <button type="button" id="novaNota">+ Nova Nota</button>
+    </section>
+
+    <section id="telaAgenda" class="tela">
+      <h2>Agenda Diária</h2>
+      <div id="listaCompromissos"></div>
+      <button type="button" id="novoCompromisso">+ Novo Compromisso</button>
+    </section>
+
+    <section id="telaCalendario" class="tela">
+      <h2>Calendário Mensal</h2>
+      <div id="calendarioMensal"></div>
+    </section>
+
+    <section id="telaConfig" class="tela">
+      <h2>Configurações</h2>
+      <p>Ajuste preferências de tema, notificações e grupos personalizados.</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Conecta News © 2026 - Trabalho, casa e pessoas conectados</p>
+  </footer>
+
+  <script src="js/script/script.js" defer></script>
+  <script src="js/script/config.js" defer></script>
+  <script src="js/script/notes.js" defer></script>
+  <script src="js/script/agenda.js" defer></script>
+  <script src="js/script/calendar.js" defer></script>
+</body>
+</html>
+
